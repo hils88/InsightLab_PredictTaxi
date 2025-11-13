@@ -80,7 +80,25 @@ jupyter notebook notebooks/taxi_prediction.ipynb
 ```
 ## Resultados
 
-pendiente
+<p align="center">
+  <img src="img - resultados/evaluacion_de_modelo.png" alt="Evaluacion de modelo" width="500"/>
+</p>
+<p align="center">
+  <img src="img - resultados/validacion_cruzada.png" alt="Validacion cruzada" width="500"/>
+</p>
+<p align="center">
+  <img src="img - resultados/prediccion_ejemplo_1.png" alt="Prediccion de ejemplo 1" width="500"/>
+</p>
+<p align="center">
+  <img src="img - resultados/grafico_duracion_viajes.png" alt="Grafico de duracion de viajes" width="500"/>
+</p>
+<p align="center">
+  <img src="img - resultados/grafico_prediccion_distancia.png" alt="Grafico de distancias" width="500"/>
+</p>
+
+<p align="center">
+  <img src="img - resultados/prediccion_vecinos.png" alt="Prediccion de vecinos" width="500"/>
+</p>
 
 ## Roadmap y Contribucion
 
