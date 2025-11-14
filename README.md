@@ -80,9 +80,25 @@ jupyter notebook notebooks/taxi_prediction.ipynb
 ```
 ## Resultados
 
+### Evaluacion del modelo
+
 <p align="center">
   <img src="img - resultados/evaluacion_de_modelo.png" alt="Evaluacion de modelo" width="500"/>
 </p>
+
+El modelo se entreno utilizando 200,000 registros del dataset de taxis, con el objetivo de predecir el tiempo total de viaje. Las metricas de evaluacion obtenidas son las siguientes:
+
+RMSE: 4.87 minutos
+Este valor indica que las predicciones del modelo presentan un desvio promedio de alrededor de 4.87 minutos respecto al tiempo real. Considerando la variabilidad natural del trafico urbano, este nivel de error es adecuado para tareas de estimación de tiempos de viaje
+
+MAE: 3.39 minutos
+El error absoluto promedio es de 3.39 minutos, lo cual refleja que el modelo mantiene un margen de error relativamente bajo en comparación con la duracion típica de los viajes. 
+
+R2: 0.7528
+El modelo logra explicar aproximadamente el 75% de la variacion total del tiempo de viaje. Este valor implica un buen ajuste, especialmente considerando que existen factores externos no incluidos en el dataset (congestion vial, clima, eventos locales) que afectan directamente la duracion de los viajes.
+
+Como conclusion, los resultados demuestran que el modelo Random Forest ofrece un desempeño solido para la prediccion de tiempos de viaje. El nivel de error es consistente con modelos aplicados a entornos urbanos reales, y el valor de R2 confirma que el modelo captura de forma efectiva los patrones de movilidad presentes en los datos.
+
 <p align="center">
   <img src="img - resultados/validacion_cruzada.png" alt="Validacion cruzada" width="500"/>
 </p>
