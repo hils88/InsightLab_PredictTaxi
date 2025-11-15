@@ -99,22 +99,80 @@ El modelo logra explicar aproximadamente el 75% de la variacion total del tiempo
 
 Como conclusion, los resultados demuestran que el modelo Random Forest ofrece un desempeño solido para la prediccion de tiempos de viaje. El nivel de error es consistente con modelos aplicados a entornos urbanos reales, y el valor de R2 confirma que el modelo captura de forma efectiva los patrones de movilidad presentes en los datos.
 
+### Validacion cruzada
+
 <p align="center">
   <img src="img - resultados/validacion_cruzada.png" alt="Validacion cruzada" width="500"/>
 </p>
+
+Para evaluar la estabilidad y capacidad de generalizacion del modelo Random Forest, se realizo una validación cruzada. Los resultados obtenidos para la metrica R2 fueron los siguientes:
+Fold 1: 0.7452
+Fold 2: 0.7495
+Fold 3: 0.7473
+
+A partir de estas evaluaciones se calcularon los valores estadisticos:
+R2 promedio: 0.747
+Desviacion estandar: 0.002
+
+El valor promedio de R2 = 0.747 indica que el modelo explica alrededor del 74.7% de la variabilidad del tiempo de viaje de forma consistente. La desviacion estandar extremadamente baja (0.002) demuestra que el desempeño entre los diferentes folds es muy estable. Esta validación cruzada confirma que el modelo Random Forest esta bien ajustado y es robusto para predecir duraciones de viaje en datos no vistos
+
+### Ejemplo de prediccion
+
+Se realizo una prediccion con los siguientes datos:
+Distancia: 3.2 millas
+Hora del día: 3 p.m.
+Dia de la semana: Jueves (pickup_dow = 4)
+Fin de semana: No
+Hora pico: Si (is_peak = 1)
+Pickup zone: 237
+Dropoff zone: 161
+
+El modelo predijo una duracion estimada de 26.8 minutos
+
 <p align="center">
   <img src="img - resultados/prediccion_ejemplo_1.png" alt="Prediccion de ejemplo 1" width="500"/>
 </p>
+
+En el primer grafico se ve que la mayoria de viajes duran entre 5 y 20 minutos pero tambien hay una cola larga de viajes de 25–40 minutos, dependiendo del trafico y la zona. La predicción marcada con la linea roja cerca de los 27 minutos, esta en una region donde si existen viajes reales solo que con menor frecuencia.
+La duración predicha no está fuera del rango tipico
+
 <p align="center">
   <img src="img - resultados/grafico_duracion_viajes.png" alt="Grafico de duracion de viajes" width="500"/>
 </p>
+
+En el segundo grafico se aprecia que distancias de 3 millas normalmente se asocian a duraciones entre 20 y 30 minutos y el punto de 3.2 millas cae en la tendencia.
 <p align="center">
   <img src="img - resultados/grafico_prediccion_distancia.png" alt="Grafico de distancias" width="500"/>
 </p>
 
+Tambien se predijeron los siguientes viajes:
+
+| trip_distance | pickup_hour | pickup_dow | is_weekend | is_peak | pickup_location_id | dropoff_location_id |
+|---------------|-------------|------------|------------|---------|---------------------|----------------------|
+| 3.2  | 15 | 4 | 0 | 1 | 237 | 161 |
+| 7.5  | 9  | 2 | 0 | 1 | 100 | 230 |
+| 1.8  | 22 | 5 | 1 | 0 | 50  | 12  |
+| 12.0 | 8  | 1 | 0 | 1 | 45  | 90  |
+| 5.5  | 18 | 6 | 1 | 1 | 210 | 55  |
+
 <p align="center">
   <img src="img - resultados/prediccion_vecinos.png" alt="Prediccion de vecinos" width="500"/>
 </p>
+
+Viaje 1 – Distancia 3.2 mi, hora pico (15:00)
+El modelo predice 26.8 min. La mediana de vecinos similares es 20.4 min, lo cual indica que la prediccion es ligeramente mas alta, posiblemente debido a la hora pico y zonas especificas de origen/destino analizadas por el modelo. Aun asi, se encuentra dentro de un rango razonable dado el comportamiento tipico de estos viajes.
+
+Viaje 2 – Distancia 7.5 mi, mañana en hora pico (09:00)
+Predicción de 27.96 min, muy alineada con la mediana historica de 26.38 min. Esto sugiere un buen ajuste del modelo para trayectos largos en horarios congestionados.
+
+Viaje 3 – Distancia 1.8 mi, noche (22:00), fin de semana
+El modelo predice 14.24 min, pero no se encontraron vecinos similares segun los criterios definidos. En este caso, la validacion externa no puede realizarse sin embargo la prediccion es coherente con la duracion tipica de viajes cortos en horarios nocturnos.
+
+Viaje 4 – Distancia 12 mi, hora pico matutina (08:00)
+El modelo predice un viaje largo: 43.11 min. La mediana historica de vecinos (38.03 min) respalda la idea de un trayecto extenso en condiciones de alto trafico. El modelo tiende a estimar ligeramente por encima, algo esperado en trayectos de larga distancia.
+
+Viaje 5 – Distancia 5.5 mi, tarde noche fin de semana (18:00)
+La prediccion es 30.10 min, mientras que los datos historicos muestran una mediana de 26.18 min. Nuevamente, la relacion es consistente y la diferencia probable se debe a factores como congestion variable o zonas especificas.
 
 ## Roadmap y Contribucion
 
