@@ -1,0 +1,22 @@
+# Data Dictionary – PredictTaxi: Prediccion de Duracion de Viajes en NYC
+
+| Nombre del Campo        | Tipo de Dato | Descripcion                                              | Ejemplo | Notas / Valores posibles |
+|-------------------------|-------------|----------------------------------------------------------|--------|-------------------------|
+| trip_distance           | float       | Distancia del viaje en millas                             | 3.2    | Siempre >0             |
+| pickup_hour             | int         | Hora de inicio del viaje (0-23)                           | 15     | 0 = medianoche         |
+| pickup_dow              | int         | Dia de la semana del viaje (0=domingo, 6=sabado)         | 4      | 0-6                     |
+| is_weekend              | int         | Indica si el viaje ocurre en fin de semana               | 0      | 0=No, 1=Sí             |
+| is_peak                 | int         | Indica si el viaje ocurre en hora pico                   | 1      | 0=No, 1=Sí             |
+| pickup_location_id      | string      | ID de ubicacion de recogida                               | 237    | Segun codificación NYC  |
+| dropoff_location_id     | string      | ID de ubicacion de entrega                                | 161    | Segun codificación NYC  |
+| passenger_count         | int         | Numero de pasajeros del viaje                             | 2      | 1-6                     |
+| trip_type               | string      | Tipo de viaje (ej. estandar, compartido)                 | "standard" | Valores según dataset  |
+| payment_type            | string      | Metodo de pago utilizado por el pasajero                 | "Card" | Card, Cash, Other       |
+| fare_amount             | float       | Costo base del viaje                                      | 12.5   | ≥0                       |
+| extra_charges           | float       | Cargos adicionales (peajes, propinas, etc.)              | 1.0    | ≥0                       |
+| total_amount            | float       | Total cobrado por el viaje                                | 13.5   | ≥0                       |
+| pickup_datetime         | datetime    | Fecha y hora de inicio del viaje                          | 2016-03-15 15:23:00 | Formato YYYY-MM-DD HH:MM:SS |
+| dropoff_datetime        | datetime    | Fecha y hora de finalizacion del viaje                    | 2016-03-15 15:45:00 | Formato YYYY-MM-DD HH:MM:SS |
+| trip_duration           | float       | Duracion del viaje en minutos                              | 22.0   | Calculado como dropoff - pickup |
+
+
